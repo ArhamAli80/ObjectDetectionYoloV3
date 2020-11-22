@@ -48,7 +48,7 @@ while(True):
                 class_ids.append(class_id)
 
     indexes = cv2.dnn.NMSBoxes(boxes,confidences,0.5,0.4)
-    font = cv2.FONT_HERSHEY_PLAIN
+    font = cv2.FONT_HERSHEY_COMPLEX
     for i in range (len(boxes)):
         if i in indexes:
             x,y,w,h = boxes[i]

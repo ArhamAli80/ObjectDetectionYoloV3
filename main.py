@@ -57,7 +57,7 @@ while(True):
             x,y,w,h = boxes[i]
             label = str(classes[class_ids[i]])
             cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,0),2)
-            cv2.rectangle(frame,(x,y-30),(x+120,y+5),(0,255,0),-1)
+            cv2.rectangle(frame,(x,y-30),(x+(len(label)*20),y+5),(0,255,0),-1)
             cv2.putText(frame, label,(x,y-10),font,1,(0,0,0),1)
         
     cv2.imshow("image", frame)

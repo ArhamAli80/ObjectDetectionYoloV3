@@ -2,6 +2,8 @@ import cv2
 import numpy as np
 
 net = cv2.dnn.readNet("yolov3.weights","yolov3.cfg")
+net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
+net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA_FP16)
 
 classes = []
 with open ("coco.names","r") as f:
@@ -20,7 +22,8 @@ while(True):
 
     for b in blob:
         for frame_blob in b:
-            cv2.imshow("img", frame_blob)
+            next
+            #cv2.imshow("img", frame_blob)
 
     net.setInput(blob)
     outs = net.forward(output_layers)
@@ -54,7 +57,8 @@ while(True):
             x,y,w,h = boxes[i]
             label = str(classes[class_ids[i]])
             cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,0),2)
-            cv2.putText(frame, label,(x,y+30),font,1,(0,0,0),3)
+            cv2.rectangle(frame,(x,y-30),(x+120,y+5),(0,255,0),-1)
+            cv2.putText(frame, label,(x,y-10),font,1,(0,0,0),1)
         
     cv2.imshow("image", frame)
 
